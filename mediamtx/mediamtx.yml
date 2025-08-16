@@ -1,0 +1,30 @@
+{
+  "paths": {
+    "all": {}
+  },
+  "rtsp": {
+    "enabled": true,
+    "address": "0.0.0.0",
+    "port": 8554
+  },
+  "rtmp": {
+    "enabled": true,
+    "address": "0.0.0.0",
+    "port": 1935
+  },
+  "hls": {
+    "enabled": true,
+    "address": "0.0.0.0",
+    "port": 8888
+  },
+  "webrtc": {
+    "enabled": true,
+    "address": "0.0.0.0",
+    "port": 8889
+  },
+  "api": {
+    "enabled": true,
+    "address": "0.0.0.0",
+    "port": 8888
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "project",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tailwindcss -c tailwind.config.cjs -i public/assets/styles/input.css -o public/assets/styles/output.css --watch",
+    "build": "tailwindcss -c tailwind.config.cjs -i public/assets/styles/input.css -o public/assets/styles/output.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}
