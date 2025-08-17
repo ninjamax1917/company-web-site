@@ -20,16 +20,23 @@ class Router
 
         if (! $route) {
             $this->notFound();
-
-            return;
         }
 
-        $route->getAction()();
+        if (is_array($route->getAction())) {
+            [$controller, $action] = $route->getAction();
+
+            $controller = new $controller;
+
+            call_user_func([$controller, $action]);
+
+        } else {
+            call_user_func($route->getAction());
+        }
     }
 
     private function notFound(): void
     {
-        echo '404 Not Found';
+        echo '404 | Not Found';
         exit;
     }
 
@@ -40,6 +47,7 @@ class Router
         }
 
         return $this->routes[$method][$uri];
+
     }
 
     private function initRoutes(): void

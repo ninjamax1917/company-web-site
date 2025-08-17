@@ -15,5 +15,6 @@ class App
         $method = $_SERVER['REQUEST_METHOD'];
 
         $router->dispatch($uri, $method);
+
     }
 }

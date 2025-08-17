@@ -1,12 +1,12 @@
 .env
-/vendor/
-/node_modules/
-/dist/
-/build/
-docker-compose.yml
-Dockerfile.php
-HELP.md
-GIT_HELP.md
+# /vendor/
+# /node_modules/
+# /dist/
+# /build/
+# docker-compose.yml
+# Dockerfile.php
+# HELP.md
+# GIT_HELP.md
 secret.txt
 
 
