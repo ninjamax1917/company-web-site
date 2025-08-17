@@ -1,36 +1,39 @@
 <?php
 
+use App\Router\Route;
+
 return [
-    '/main' => function () {
+
+    Route::get('/main', function () {
         include_once APP_PATH.'/views/pages/main.view.php';
-    },
+    }),
 
-    '/cctv' => function () {
+    Route::get('/cctv', function () {
         include_once APP_PATH.'/views/pages/cctv.view.php';
-    },
+    }),
 
-    '/city-cctv' => function () {
-        include_once APP_PATH.'/views/pages/city.view.php';
-    },
+    Route::get('/city-cctv', function () {
+        include_once APP_PATH.'/views/pages/city-cctv.view.php';
+    }),
 
-    '/project-design' => function () {
+    Route::get('/project-design', function () {
         include_once APP_PATH.'/views/pages/project-design.view.php';
-    },
+    }),
 
-    '/electricity' => function () {
+    Route::get('/electricity', function () {
         include_once APP_PATH.'/views/pages/electricity.view.php';
-    },
+    }),
 
-    '/fire-alarm' => function () {
+    Route::get('/fire-alarm', function () {
         include_once APP_PATH.'/views/pages/fire-alarm.view.php';
-    },
+    }),
 
-    '/networks' => function () {
+    Route::get('/networks', function () {
         include_once APP_PATH.'/views/pages/networks.view.php';
-    },
+    }),
 
-    '/security-alarm' => function () {
+    Route::get('/security-alarm', function () {
         include_once APP_PATH.'/views/pages/security-alarm.view.php';
-    },
+    }),
 
 ];

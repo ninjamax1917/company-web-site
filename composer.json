@@ -1,6 +1,5 @@
 {
     "name": "ninja/app",
-    "type": "project",
     "autoload": {
         "psr-4": {
             "App\\": "src/"
