@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Kernel\View;
+
+use App\Kernel\Exceptions\ViewNotFoundException;
+
+/**
+ * Класс View отвечает за подключение страниц и компонентов (view-частей) приложения.
+ * Позволяет гибко и централизованно внедрять шаблоны и переиспользуемые куски интерфейса.
+ */
+class View
+{
+    /**
+     * Подключает view-страницу по имени.
+     *
+     * Внутри подключаемого файла доступна переменная $view — текущий объект View.
+     *
+     * @param  string  $name  Имя страницы (без расширения и пути), например: 'main', 'cctv', 'layout'
+     * @return void
+     *
+     * @example
+     * $view->page('main'); // подключит APP_PATH.'/views/pages/main.view.php'
+     */
+    public function page(string $name): void
+    {
+
+        $viewPath = APP_PATH.'/views/pages/'.$name.'.view.php';
+
+        if (! file_exists($viewPath)) {
+            throw new ViewNotFoundException("View page '$name' not found");
+        }
+
+        extract([
+            'view' => $this,
+        ]);
+
+        include_once $viewPath;
+    }
+
+    /**
+     * Универсально подключает view-компонент по имени.
+     *
+     * Сначала ищет файл components/{$name}.php,
+     * если не найден — пытается найти components/{$name}/{$basename}.php,
+     * где $basename — это имя файла без пути (после последнего слеша).
+     * Внутри компонента также доступна переменная $view.
+     *
+     * Пример структуры:
+     *   - components/head/head.php
+     *   - components/header/logo.php
+     *   - components/footer/footer.php
+     *
+     * @param  string  $name  Имя компонента (может быть с поддиректориями через слэш), например: 'header/logo', 'footer'
+     * @return void
+     *
+     * @example
+     * $view->components('header/logo'); // подключит APP_PATH.'/views/components/header/logo.php'
+     * $view->components('footer');      // подключит APP_PATH.'/views/components/footer.php' или APP_PATH.'/views/components/footer/footer.php'
+     */
+    public function components(string $name): void
+    {
+        extract(['view' => $this]);
+        $base = APP_PATH.'/views/components/';
+        $fileDirect = $base.$name.'.php';
+        $fileNested = $base.$name.'/'.basename($name).'.php';
+
+        if (file_exists($fileDirect)) {
+            include_once $fileDirect;
+        } elseif (file_exists($fileNested)) {
+            include_once $fileNested;
+        } else {
+            trigger_error("Component '$name' not found", E_USER_WARNING);
+        }
+    }
+}

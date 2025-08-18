@@ -27,3 +27,11 @@ git push origin main
 # Установить имя и email
 
 - git config --global user.name "ninjamax1917"
+
+# Обновление проекта
+
+**Проверь ветку проекта**
+- git branch
+
+**Скачай изменения**
+- git pull origin main 

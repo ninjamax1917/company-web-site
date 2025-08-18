@@ -2,30 +2,35 @@
 
 namespace App\Controllers;
 
-class PagesController
+use App\Kernel\Controller\Controller;
+
+/**
+ * Контроллер для различных информационных страниц.
+ */
+class PagesController extends Controller
 {
     public function projectDesign(): void
     {
-        include_once APP_PATH.'/views/pages/project-design.view.php';
+        $this->view('project-design');
     }
 
     public function electricity(): void
     {
-        include_once APP_PATH.'/views/pages/electricity.view.php';
+        $this->view('electricity');
     }
 
     public function fireAlarm(): void
     {
-        include_once APP_PATH.'/views/pages/fire-alarm.view.php';
+        $this->view('fire-alarm');
     }
 
     public function networks(): void
     {
-        include_once APP_PATH.'/views/pages/networks.view.php';
+        $this->view('networks');
     }
 
     public function securityAlarm(): void
     {
-        include_once APP_PATH.'/views/pages/security-alarm.view.php';
+        $this->view('security-alarm');
     }
 }

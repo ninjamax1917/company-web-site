@@ -2,15 +2,20 @@
 
 namespace App\Controllers;
 
-class CCTVController
+use App\Kernel\Controller\Controller;
+
+/**
+ * Контроллер для страниц видеонаблюдения.
+ */
+class CCTVController extends Controller
 {
     public function cctv(): void
     {
-        include_once APP_PATH.'/views/pages/cctv.view.php';
+        $this->view('cctv');
     }
 
     public function cityCctv(): void
     {
-        include_once APP_PATH.'/views/pages/city-cctv.view.php';
+        $this->view('city-cctv');
     }
 }

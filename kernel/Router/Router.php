@@ -2,8 +2,16 @@
 
 namespace App\Kernel\Router;
 
+use App\Kernel\View\View;
+
 /**
- * Очень маленький HTTP-маршрутизатор, который точно соответствует URI для GET/POST.
+ * Очень маленький HTTP-маршрутизатор, который сопоставляет URI с контроллерами/действиями для методов GET/POST.
+ *
+ * Пример использования:
+ *   $router = new Router($view);
+ *   $router->dispatch('/main', 'GET');
+ *
+ * @property View $view Экземпляр класса View для передачи контроллерам.
  */
 class Router
 {
@@ -18,14 +26,18 @@ class Router
         'POST' => [],
     ];
 
-    public function __construct()
-    {
+    public function __construct(
+        private View $view
+    ) {
         $this->initRoutes();
     }
 
     /**
      * Отправляет запрос к соответствующему действию маршрута.
-     * Отправляет ответ 404 и завершает выполнение, если маршрут не найден.
+     * Если маршрут не найден — выводит 404 и завершает выполнение.
+     *
+     * @param  string  $uri  URI запроса (например: '/main')
+     * @param  string  $method  HTTP-метод (GET, POST)
      */
     public function dispatch(string $uri, string $method): void
     {
@@ -38,8 +50,10 @@ class Router
         if (is_array($route->getAction())) {
             [$controller, $action] = $route->getAction();
 
+            /** @var Controller $controller */
             $controller = new $controller;
 
+            call_user_func([$controller, 'setView'], $this->view);
             call_user_func([$controller, $action]);
 
         } else {

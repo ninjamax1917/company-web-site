@@ -1,7 +1,7 @@
 <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-500">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
     <!-- Лого -->
-    <?php include_once __DIR__.'/logo.php'; ?>
+    <?php $view->components('header/logo'); ?>
 
     <!-- Навигационная панель для десктопов -->
     <nav class="hidden md:flex items-center gap-6">
@@ -51,7 +51,7 @@
             </span>
             Охранная сигнализация
           </a>
-          <a href="/design" class="hover-dark-bg flex items-center gap-2 px-4 py-2 rounded text-gray-700 hover:text-blue-700 hover:bg-gray-50">
+          <a href="/project-design" class="hover-dark-bg flex items-center gap-2 px-4 py-2 rounded text-gray-700 hover:text-blue-700 hover:bg-gray-50">
             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill="currentColor" aria-hidden="true">
               <path d="M456-600h320q-27-69-82.5-118.5T566-788L456-600Zm-92 80 160-276q-11-2-22-3t-22-1q-66 0-123 25t-101 67l108 188ZM170-400h218L228-676q-32 41-50 90.5T160-480q0 21 2.5 40.5T170-400Zm224 228 108-188H184q27 69 82.5 118.5T394-172Zm86 12q66 0 123-25t101-67L596-440 436-164q11 2 21.5 3t22.5 1Zm252-124q32-41 50-90.5T800-480q0-21-2.5-40.5T790-560H572l160 276ZM480-480Zm0 400q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Z" />
             </svg>
@@ -70,10 +70,10 @@
     </nav>
 
     <!-- Кнопки для десктопов -->
-    <?php include_once __DIR__.'/button_toggle_desktop.php'; ?>
+    <?php $view->components('header/button_toggle_desktop'); ?>
 
     <!-- Mobile: burger -->
-    <?php include_once __DIR__.'/burger_button.php'; ?>
+    <?php $view->components('header/burger_button'); ?>
 
   </div>
 
@@ -117,7 +117,7 @@
             </svg>
             Охранная сигнализация
           </a>
-          <a href="/design" class="mobile-menu-item hover-dark-bg flex items-center gap-2 px-2 py-2 rounded text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">
+          <a href="/project-design" class="mobile-menu-item hover-dark-bg flex items-center gap-2 px-2 py-2 rounded text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 dark:text-gray-300" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
               <path d="M456-600h320q-27-69-82.5-118.5T566-788L456-600Zm-92 80 160-276q-11-2-22-3t-22-1q-66 0-123 25t-101 67l108 188ZM170-400h218L228-676q-32 41-50 90.5T160-480q0 21 2.5 40.5T170-400Zm224 228 108-188H184q27 69 82.5 118.5T394-172Zm86 12q66 0 123-25t101-67L596-440 436-164q11 2 21.5 3t22.5 1Zm252-124q32-41 50-90.5T800-480q0-21-2.5-40.5T790-560H572l160 276ZM480-480Zm0 400q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Z" />
             </svg>
@@ -136,7 +136,7 @@
 
       <!-- Кнопки для мобильных устройств -->
 
-      <?php include_once __DIR__.'/button_toggle_mobile.php'; ?>
+      <?php $view->components('header/button_toggle_mobile'); ?>
 
     </nav>
   </div>

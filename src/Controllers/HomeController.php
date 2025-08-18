@@ -2,10 +2,20 @@
 
 namespace App\Controllers;
 
-class HomeController
+use App\Kernel\Controller\Controller;
+
+/**
+ * Контроллер главной страницы сайта.
+ */
+class HomeController extends Controller
 {
+    /**
+     * Отображает главную страницу.
+     *
+     * URL: /main
+     */
     public function index(): void
     {
-        include_once APP_PATH.'/views/pages/main.view.php';
+        $this->view('main');
     }
 }
