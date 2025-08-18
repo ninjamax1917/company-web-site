@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Router;
+namespace App\Kernel\Router;
 
 /**
- * Very small HTTP router that matches exact URIs for GET/POST.
+ * Очень маленький HTTP-маршрутизатор, который точно соответствует URI для GET/POST.
  */
 class Router
 {
@@ -24,8 +24,8 @@ class Router
     }
 
     /**
-     * Dispatches the request to a matched route action.
-     * Sends a 404 response and exits if route is not found.
+     * Отправляет запрос к соответствующему действию маршрута.
+     * Отправляет ответ 404 и завершает выполнение, если маршрут не найден.
      */
     public function dispatch(string $uri, string $method): void
     {
@@ -48,7 +48,7 @@ class Router
     }
 
     /**
-     * Sends 404 and terminates the script.
+     * Отправляет 404 и завершает работу скрипта.
      */
     private function notFound(): void
     {

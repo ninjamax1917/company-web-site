@@ -2,7 +2,8 @@
     "name": "ninja/app",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Kernel\\": "kernel/"
         }
     },
     "authors": [

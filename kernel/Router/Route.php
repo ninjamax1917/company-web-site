@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Router;
+namespace App\Kernel\Router;
 
 /**
- * Represents a single HTTP route.
+ * Представляет один HTTP маршрут.
  *
  * @psalm-type ControllerAction=array{0: class-string, 1: non-empty-string}
  */
@@ -20,7 +20,7 @@ class Route
     ) {}
 
     /**
-     * Define a GET route.
+     * Определяет маршрут GET.
      *
      * @param  callable|ControllerAction  $action
      */
@@ -30,7 +30,7 @@ class Route
     }
 
     /**
-     * Define a POST route.
+     * Определяет маршрут POST.
      *
      * @param  callable|ControllerAction  $action
      */

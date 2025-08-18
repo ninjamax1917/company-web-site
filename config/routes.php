@@ -3,10 +3,10 @@
 use App\Controllers\CCTVController;
 use App\Controllers\HomeController;
 use App\Controllers\PagesController;
-use App\Router\Route;
+use App\Kernel\Router\Route;
 
 /**
- * Route definitions.
+ * Определение маршрутов.
  *
  * @return list<Route>
  */
