@@ -15,7 +15,7 @@ secret.txt)
 
 # Зафиксируйте изменения:
 git add .
-git commit -m "Remove ignored files from repository""
+git commit -m "Remove ignored files from repository"
 
 # Отправьте изменения на GitHub:
 git push origin main

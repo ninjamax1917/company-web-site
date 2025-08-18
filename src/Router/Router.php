@@ -2,8 +2,17 @@
 
 namespace App\Router;
 
+/**
+ * Very small HTTP router that matches exact URIs for GET/POST.
+ */
 class Router
 {
+    /**
+     * @var array{
+     *   GET: array<string, Route>,
+     *   POST: array<string, Route>
+     * }
+     */
     private $routes = [
         'GET' => [],
         'POST' => [],
@@ -14,6 +23,10 @@ class Router
         $this->initRoutes();
     }
 
+    /**
+     * Dispatches the request to a matched route action.
+     * Sends a 404 response and exits if route is not found.
+     */
     public function dispatch(string $uri, string $method): void
     {
         $route = $this->findRoute($uri, $method);
@@ -34,12 +47,18 @@ class Router
         }
     }
 
+    /**
+     * Sends 404 and terminates the script.
+     */
     private function notFound(): void
     {
         echo '404 | Not Found';
         exit;
     }
 
+    /**
+     * @return \App\Router\Route|false
+     */
     private function findRoute(string $uri, string $method): Route|false
     {
         if (! isset($this->routes[$method][$uri])) {
@@ -59,7 +78,7 @@ class Router
     }
 
     /**
-     * @return Route[]
+     * @return list<Route>
      */
     private function getRoutes(): array
     {

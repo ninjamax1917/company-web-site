@@ -23,3 +23,6 @@ docker exec -it project-php-1 composer dump-autoload -->
 # Autoload Composer
 docker compose exec php composer dump-autoload
 
+# Вывести дерево диреторий исключая некоторые
+tree -I 'mediamtx|nginx|node_modules'
+

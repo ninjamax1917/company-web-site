@@ -5,6 +5,12 @@ use App\Controllers\HomeController;
 use App\Controllers\PagesController;
 use App\Router\Route;
 
+/**
+ * Route definitions.
+ *
+ * @return list<Route>
+ */
+
 return [
 
     Route::get('/main', [HomeController::class, 'index']),
