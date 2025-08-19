@@ -5,7 +5,7 @@
 
     <!-- Навигационная панель для десктопов -->
     <nav class="hidden md:flex items-center gap-6">
-      <a href="/" class="text-gray-600 hover:text-blue-600 transition">Главная</a>
+      <a href="/main" class="text-gray-600 hover:text-blue-600 transition">Главная</a>
 
       <!-- Dropdown меню -->
       <div class="relative group">

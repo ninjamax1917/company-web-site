@@ -9,6 +9,9 @@
 # GIT_HELP.md
 secret.txt
 STRUCTURE.md
+node_modules
+vendor
+
 
 
 

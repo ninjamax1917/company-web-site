@@ -31,7 +31,13 @@ git push origin main
 # Обновление проекта
 
 **Проверь ветку проекта**
+
 - git branch
 
 **Скачай изменения**
-- git pull origin main 
+
+- git pull origin main
+
+# Получить актуальную версию проекта
+
+- git pull
