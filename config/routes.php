@@ -28,4 +28,8 @@ return [
     Route::get('/networks', [PagesController::class, 'networks']),
 
     Route::get('/security-alarm', [PagesController::class, 'securityAlarm']),
+
+    Route::get('/admin/test/add', [PagesController::class, 'add']),
+
+    Route::post('/admin/test/add', [PagesController::class, 'store']),
 ];

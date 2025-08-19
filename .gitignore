@@ -11,6 +11,8 @@ secret.txt
 STRUCTURE.md
 node_modules
 vendor
+node_modules/
+package-lock.json
 
 
 

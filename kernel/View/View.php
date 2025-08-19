@@ -18,6 +18,8 @@ class View
      * @param  string  $name  Имя страницы (без расширения и пути), например: 'main', 'cctv', 'layout'
      * @return void
      *
+     * @throws ViewNotFoundException Если страница не найдена по указанному имени.
+     *
      * @example
      * $view->page('main'); // подключит APP_PATH.'/views/pages/main.view.php'
      */
@@ -27,7 +29,7 @@ class View
         $viewPath = APP_PATH.'/views/pages/'.$name.'.view.php';
 
         if (! file_exists($viewPath)) {
-            throw new ViewNotFoundException("View page '$name' not found");
+            throw new ViewNotFoundException("Страница '$name' не найдена");
         }
 
         extract([
@@ -60,16 +62,18 @@ class View
     public function components(string $name): void
     {
         extract(['view' => $this]);
-        $base = APP_PATH.'/views/components/';
-        $fileDirect = $base.$name.'.php';
-        $fileNested = $base.$name.'/'.basename($name).'.php';
+        $componentPath = APP_PATH.'/views/components/';
+        $fileDirect = $componentPath.$name.'.php';
+        $fileNested = $componentPath.$name.'/'.basename($name).'.php';
 
         if (file_exists($fileDirect)) {
             include_once $fileDirect;
         } elseif (file_exists($fileNested)) {
             include_once $fileNested;
         } else {
-            trigger_error("Component '$name' not found", E_USER_WARNING);
+            trigger_error("Компонент '$name' не найден", E_USER_WARNING);
+
+            return;
         }
     }
 }

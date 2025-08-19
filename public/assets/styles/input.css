@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "tailwindcss";
 /* Источники для purge (v4) */
 @source "../../views/**/*.php" "../../views/**/*.html" "../../public/**/*.php" "../../public/**/*.html" "../../public/**/*.{js,ts}";

@@ -1,3 +1,12 @@
+**Инициализируйте npm (если ещё нет package.json)**
+sudo apt install npm
+npm init -y
+**Установите Tailwind CSS и CLI**
+npm install tailwindcss @tailwindcss/cli
+**(Опционально) Сгенерируйте конфиг Tailwind**
+npx tailwindcss init
+
+**package.json**
 {
   "name": "project",
   "version": "1.0.0",
@@ -24,3 +33,9 @@
   }
   
 }
+
+**Режим "watch"**
+- npm run tailwind:watch
+
+**Пересобрать Tailwind вручную**
+- npm run tailwind:build

@@ -18,26 +18,6 @@ services:
     volumes:
       - ./:/var/www/html
 
-  tailwind:
-    image: node:20
-    working_dir: /app
-    volumes:
-      - ./:/app
-      - tailwind_node_modules:/app/node_modules
-    environment:
-      # Можно выставить FORCE_CLEAN=1 чтобы принудительно пересоздать зависимости (docker compose up -d tailwind)
-      - FORCE_CLEAN
-    command: >-
-      sh -c 'set -e; \
-      echo "[tailwind] start (v4.1)"; \
-      if [ "${FORCE_CLEAN}" = "1" ]; then echo "[tailwind] FORCE_CLEAN=1 -> cleanup"; rm -rf node_modules package-lock.json; fi; \
-      if [ ! -d node_modules ]; then echo "[tailwind] installing deps (@tailwindcss/cli)"; npm init -y >/dev/null 2>&1 || true; npm install --no-audit --no-fund @tailwindcss/cli@4.1.11; fi; \
-      echo "[tailwind] cli version: $(npx @tailwindcss/cli -v)"; \
-      echo "[tailwind] building initial CSS"; \
-      npx @tailwindcss/cli -c tailwind.config.cjs -i public/assets/styles/input.css -o public/assets/styles/output.css; \
-      echo "[tailwind] watching..."; \
-      npx @tailwindcss/cli -c tailwind.config.cjs -i public/assets/styles/input.css -o public/assets/styles/output.css --watch'
-
   mysql:
     image: mysql:8.0
     environment:
@@ -54,7 +34,6 @@ services:
     image: phpmyadmin/phpmyadmin
     environment:
       PMA_HOST: mysql
-      # Использовать cookie-auth, чтобы phpMyAdmin запрашивал логин/пароль
       PMA_AUTH_TYPE: cookie
     ports:
       - "8080:80"
@@ -64,9 +43,9 @@ services:
   mediamtx:
     image: bluenviron/mediamtx:latest
     ports:
-      - "1935:1935"   # RTMP
-      - "8554:8554"   # RTSP
-      - "8888:8888"   # HTTP API
+      - "1935:1935"
+      - "8554:8554"
+      - "8888:8888"
     volumes:
       - ./mediamtx/mediamtx.json:/mediamtx.json:ro
 

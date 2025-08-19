@@ -33,4 +33,14 @@ class PagesController extends Controller
     {
         $this->view('security-alarm');
     }
+
+    public function add(): void
+    {
+        $this->view('admin/test/add');
+    }
+
+    public function store(): void
+    {
+        dd('store');
+    }
 }
