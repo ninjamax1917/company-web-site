@@ -20,7 +20,7 @@
   "homepage": "https://github.com/ninjamax1917/company-web-site#readme",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12",
+    "daisyui": "^5.0.50",
     "tailwindcss": "^4.1.12"
   }
-  
 }
