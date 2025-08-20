@@ -41,3 +41,10 @@ npx tailwindcss init
 **Пересобрать Tailwind вручную**
 
 - npm run tailwind:build
+
+**Переустановить зависимости**
+- rm -rf node_modules package-lock.json
+- npm install
+
+**Пересборка Tailwind**
+- npx tailwindcss -c tailwind.config.cjs -i public/assets/styles/input.css -o public/assets/styles/output.css
