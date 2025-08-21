@@ -39,8 +39,18 @@ class PagesController extends Controller
         $this->view('admin/test/add');
     }
 
-    public function store(): void
+    public function store()
     {
-        dd('store');
+        $validation = $this->getRequest()->validate([
+            'name' => ['required', 'min:3', 'max:50'],
+        ]);
+
+        if (! $validation) {
+            foreach ($this->getRequest()->errors() as $field => $errors) {
+                $this->getSession()->setSession($field, $errors);
+            }
+            $this->redirect('/admin/test/add');
+        }
+
     }
 }

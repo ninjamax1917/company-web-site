@@ -3,6 +3,7 @@
 namespace App\Kernel\View;
 
 use App\Kernel\Exceptions\ViewNotFoundException;
+use App\Kernel\Session\Session;
 
 /**
  * Класс View отвечает за подключение страниц и компонентов (view-частей) приложения.
@@ -10,6 +11,8 @@ use App\Kernel\Exceptions\ViewNotFoundException;
  */
 class View
 {
+    public function __construct(private Session $session) {}
+
     /**
      * Подключает view-страницу по имени.
      *
@@ -32,9 +35,7 @@ class View
             throw new ViewNotFoundException("Страница '$name' не найдена");
         }
 
-        extract([
-            'view' => $this,
-        ]);
+        extract($this->defaultData());
 
         include_once $viewPath;
     }
@@ -75,5 +76,13 @@ class View
 
             return;
         }
+    }
+
+    private function defaultData(): array
+    {
+        return [
+            'view' => $this,
+            'session' => $this->session,
+        ];
     }
 }

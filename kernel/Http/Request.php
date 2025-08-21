@@ -2,12 +2,16 @@
 
 namespace App\Kernel\Http;
 
+use App\Kernel\Validator\Validator;
+
 /**
  * Класс Request инкапсулирует данные HTTP-запроса
  * и предоставляет удобные методы для их получения.
  */
 class Request
 {
+    private Validator $validator;
+
     /**
      * @param  array  $get  Данные GET-запроса ($_GET)
      * @param  array  $post  Данные POST-запроса ($_POST)
@@ -60,5 +64,55 @@ class Request
     public function method(): string
     {
         return $this->server['REQUEST_METHOD'];
+    }
+
+    /**
+     * Получить значение из POST или GET по ключу.
+     *
+     * @param  string  $key  Ключ параметра
+     * @param  mixed  $default  Значение по умолчанию, если не найдено
+     * @return mixed
+     */
+    public function input(string $key, $default = null): mixed
+    {
+        return $this->post[$key] ?? $this->get[$key] ?? $default;
+    }
+
+    /**
+     * Установить валидатор для запроса.
+     *
+     * @param  Validator  $validator
+     * @return void
+     */
+    public function setValidator(Validator $validator): void
+    {
+        $this->validator = $validator;
+    }
+
+    /**
+     * Валидировать данные запроса по заданным правилам.
+     *
+     * @param  array  $rules  Массив правил валидации
+     * @return bool true, если данные валидны, иначе false
+     */
+    public function validate(array $rules): bool
+    {
+        $data = [];
+
+        foreach ($rules as $field => $rule) {
+            $data[$field] = $this->input($field);
+        }
+
+        return $this->validator->validate($data, $rules);
+    }
+
+    /**
+     * Получить ошибки валидации.
+     *
+     * @return array Массив ошибок
+     */
+    public function errors(): array
+    {
+        return $this->validator->errors();
     }
 }

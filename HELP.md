@@ -29,4 +29,4 @@ docker compose exec php composer dump-autoload
 
 tree -I 'mediamtx|nginx|node_modules'
 
-# 1:30
+# 2:01

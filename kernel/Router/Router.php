@@ -2,6 +2,9 @@
 
 namespace App\Kernel\Router;
 
+use App\Kernel\Http\Redirect;
+use App\Kernel\Http\Request;
+use App\Kernel\Session\Session;
 use App\Kernel\View\View;
 
 /**
@@ -12,10 +15,14 @@ use App\Kernel\View\View;
  *   $router->dispatch('/main', 'GET');
  *
  * @property View $view Экземпляр класса View для передачи контроллерам.
+ * @property Request $request Экземпляр класса Request для передачи контроллерам.
+ * @property Redirect $redirect Экземпляр класса Redirect для передачи контроллерам.
  */
 class Router
 {
     /**
+     * Массив маршрутов, сгруппированных по HTTP-методу.
+     *
      * @var array{
      *   GET: array<string, Route>,
      *   POST: array<string, Route>
@@ -27,7 +34,10 @@ class Router
     ];
 
     public function __construct(
-        private View $view
+        private View $view,
+        private Request $request,
+        private Redirect $redirect,
+        private Session $session,
     ) {
         $this->initRoutes();
     }
@@ -38,6 +48,7 @@ class Router
      *
      * @param  string  $uri  URI запроса (например: '/main')
      * @param  string  $method  HTTP-метод (GET, POST)
+     * @return void
      */
     public function dispatch(string $uri, string $method): void
     {
@@ -54,6 +65,10 @@ class Router
             $controller = new $controller;
 
             call_user_func([$controller, 'setView'], $this->view);
+            call_user_func([$controller, 'setRequest'], $this->request);
+            call_user_func([$controller, 'setRedirect'], $this->redirect);
+            call_user_func([$controller, 'setSession'], $this->session);
+
             call_user_func([$controller, $action]);
 
         } else {
@@ -71,7 +86,11 @@ class Router
     }
 
     /**
-     * @return \App\Router\Route|false
+     * Ищет маршрут по URI и методу.
+     *
+     * @param  string  $uri
+     * @param  string  $method
+     * @return Route|false Найденный маршрут или false, если не найден
      */
     private function findRoute(string $uri, string $method): Route|false
     {
@@ -83,6 +102,11 @@ class Router
 
     }
 
+    /**
+     * Инициализирует маршруты из конфигурационного файла.
+     *
+     * @return void
+     */
     private function initRoutes(): void
     {
         $routes = $this->getRoutes();
@@ -92,6 +116,8 @@ class Router
     }
 
     /**
+     * Получает список маршрутов из конфигурационного файла.
+     *
      * @return list<Route>
      */
     private function getRoutes(): array
