@@ -3,15 +3,15 @@
 namespace App\Kernel\View;
 
 use App\Kernel\Exceptions\ViewNotFoundException;
-use App\Kernel\Session\Session;
+use App\Kernel\Session\SessionInterface;
 
 /**
  * Класс View отвечает за подключение страниц и компонентов (view-частей) приложения.
  * Позволяет гибко и централизованно внедрять шаблоны и переиспользуемые куски интерфейса.
  */
-class View
+class View implements ViewInterface
 {
-    public function __construct(private Session $session) {}
+    public function __construct(private SessionInterface $session) {}
 
     /**
      * Подключает view-страницу по имени.

@@ -3,14 +3,15 @@
 namespace App\Kernel\Http;
 
 use App\Kernel\Validator\Validator;
+use App\Kernel\Validator\ValidatorInterface;
 
 /**
  * Класс Request инкапсулирует данные HTTP-запроса
  * и предоставляет удобные методы для их получения.
  */
-class Request
+class Request implements RequestInterface
 {
-    private Validator $validator;
+    private ValidatorInterface $validator;
 
     /**
      * @param  array  $get  Данные GET-запроса ($_GET)
@@ -84,7 +85,7 @@ class Request
      * @param  Validator  $validator
      * @return void
      */
-    public function setValidator(Validator $validator): void
+    public function setValidator(ValidatorInterface $validator): void
     {
         $this->validator = $validator;
     }

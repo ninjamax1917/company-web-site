@@ -3,9 +3,12 @@
 namespace App\Kernel\Controller;
 
 use App\Kernel\Http\Redirect;
+use App\Kernel\Http\RedirectInterface;
 use App\Kernel\Http\Request;
-use App\Kernel\Session\Session;
+use App\Kernel\Http\RequestInterface;
+use App\Kernel\Session\SessionInterface;
 use App\Kernel\View\View;
+use App\Kernel\View\ViewInterface;
 
 /**
  * Базовый контроллер приложения.
@@ -25,25 +28,25 @@ abstract class Controller
      *
      * @var View
      */
-    private View $view;
+    private ViewInterface $view;
 
     /**
      * Экземпляр класса Request, внедряется роутером.
      *
      * @var Request
      */
-    private Request $request;
+    private RequestInterface $request;
 
-    private Redirect $redirect;
+    private RedirectInterface $redirect;
 
-    private Session $session;
+    private SessionInterface $session;
 
     /**
      * Получить объект текущего HTTP-запроса.
      *
      * @return Request Экземпляр класса Request
      */
-    public function getRequest(): Request
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }
@@ -54,7 +57,7 @@ abstract class Controller
      * @param  Request  $request  Экземпляр класса Request
      * @return void
      */
-    public function setRequest(Request $request): void
+    public function setRequest(RequestInterface $request): void
     {
         $this->request = $request;
     }
@@ -74,7 +77,7 @@ abstract class Controller
      *
      * @param  View  $view  Экземпляр класса View
      */
-    public function setView(View $view): void
+    public function setView(ViewInterface $view): void
     {
         $this->view = $view;
     }
@@ -85,7 +88,7 @@ abstract class Controller
      * @param  Redirect  $redirect  Экземпляр класса Redirect
      * @return void
      */
-    public function setRedirect(Redirect $redirect): void
+    public function setRedirect(RedirectInterface $redirect): void
     {
         $this->redirect = $redirect;
     }
@@ -101,12 +104,12 @@ abstract class Controller
         $this->redirect->to($url);
     }
 
-    public function setSession(Session $session): void
+    public function setSession(SessionInterface $session): void
     {
         $this->session = $session;
     }
 
-    public function getSession(): Session
+    public function getSession(): SessionInterface
     {
         return $this->session;
 

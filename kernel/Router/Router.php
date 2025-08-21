@@ -2,10 +2,14 @@
 
 namespace App\Kernel\Router;
 
+use App\Kernel\Controller\Controller;
 use App\Kernel\Http\Redirect;
+use App\Kernel\Http\RedirectInterface;
 use App\Kernel\Http\Request;
-use App\Kernel\Session\Session;
+use App\Kernel\Http\RequestInterface;
+use App\Kernel\Session\SessionInterface;
 use App\Kernel\View\View;
+use App\Kernel\View\ViewInterface;
 
 /**
  * Очень маленький HTTP-маршрутизатор, который сопоставляет URI с контроллерами/действиями для методов GET/POST.
@@ -18,7 +22,7 @@ use App\Kernel\View\View;
  * @property Request $request Экземпляр класса Request для передачи контроллерам.
  * @property Redirect $redirect Экземпляр класса Redirect для передачи контроллерам.
  */
-class Router
+class Router implements RouterInterface
 {
     /**
      * Массив маршрутов, сгруппированных по HTTP-методу.
@@ -34,10 +38,10 @@ class Router
     ];
 
     public function __construct(
-        private View $view,
-        private Request $request,
-        private Redirect $redirect,
-        private Session $session,
+        private ViewInterface $view,
+        private RequestInterface $request,
+        private RedirectInterface $redirect,
+        private SessionInterface $session,
     ) {
         $this->initRoutes();
     }

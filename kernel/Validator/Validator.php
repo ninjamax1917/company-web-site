@@ -15,7 +15,7 @@ namespace App\Kernel\Validator;
  *   $isValid = $validator->validate($data, $rules);
  *   $errors = $validator->errors();
  */
-class Validator
+class Validator implements ValidatorInterface
 {
     /**
      * Массив ошибок после валидации.
